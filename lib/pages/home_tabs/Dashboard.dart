@@ -57,7 +57,7 @@ class IntroPageViewState extends State<IntroPageView> {
               verticalDirection: VerticalDirection.down,
               children: <Widget>[
                 _getTextView("Services"),
-                _gridView(),
+//                _gridView(),
               ],
             ),
           ),
