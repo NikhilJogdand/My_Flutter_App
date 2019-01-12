@@ -7,9 +7,12 @@ import 'pages/LoginPage.dart';
 import 'pages/MyHomePage.dart';
 import 'pages/MySecondPage.dart'; // For splash screen timer
 
-void main() => runApp(new _MyApp());
+void main() => runApp(new MyApp());
 
-class _MyApp extends StatelessWidget {
+class MyApp extends StatelessWidget {
+
+  static var themeColor = getColorHexFromStr('#FB5B87');
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,7 +21,7 @@ class _MyApp extends StatelessWidget {
         theme: new ThemeData(
             primarySwatch: Colors.deepOrange,
             primaryColor: Theme.of(context).platform == TargetPlatform.android
-                ? Color(getColorHexFromStr('#FB5B87'))
+                ? Color(themeColor)
                 : Colors.yellow),
         routes: <String, WidgetBuilder>{
           MyHomePage.pageRouteName: (BuildContext context) => new MyHomePage(),

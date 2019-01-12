@@ -25,7 +25,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage>
     with SingleTickerProviderStateMixin {
   TabController controller;
-  var _tittle = "Artillery World";
+  var _tittle = "Laundry";
 
   int _selectedIndex = 1;
 
@@ -76,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage>
       onWillPop: _onWillPop,
       child: new Scaffold(
         appBar: new AppBar(
-            title: new Text(_tittle), centerTitle: true, elevation: 7.0),
+            title: new Text(_tittle,style: TextStyle(fontSize: 25,letterSpacing: 3,fontStyle: FontStyle.italic),), centerTitle: true, elevation: 7.0),
         drawer: new MyDrawer(), // Drawer Class instance is created.
         body: getSelectedView(context,_selectedIndex),
         bottomNavigationBar: BottomNavigationBar(

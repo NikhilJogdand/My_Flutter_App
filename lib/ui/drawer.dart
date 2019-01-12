@@ -1,3 +1,4 @@
+import 'package:basicrouting/ui/ListCardView.dart';
 import 'package:flutter/material.dart';
 import '../pages/MySecondPage.dart';
 import '../pages/BackDropMenuPage.dart';
@@ -16,7 +17,7 @@ class _MyDrawerState extends State<MyDrawer> {
   final String _BACK_DROP_MENU_TITTLE = "Back Drop Menu";
   final String _LOGOUT_TITTLE = "Logout";
   final double _ICONS_SIZE = 35.00;
-  var iconColor = Colors.yellow;
+  var iconColor = Color(getColorHexFromStr('#FB5B87'));
 
   @override
   Widget build(BuildContext context) {
