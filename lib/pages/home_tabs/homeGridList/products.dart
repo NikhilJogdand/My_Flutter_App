@@ -22,6 +22,7 @@ class _ProductsState extends State<Products> {
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
       Flexible(
+        flex: 2,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           mainAxisSize: MainAxisSize.max,
