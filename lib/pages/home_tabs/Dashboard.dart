@@ -6,12 +6,13 @@ import 'package:basicrouting/ui/ListCardView.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class IntroPageView extends StatefulWidget {
+class LaundryPageView extends StatefulWidget {
   @override
-  State createState() => new IntroPageViewState();
+  State createState() => new LaundryPageViewState();
 }
 
-class IntroPageViewState extends State<IntroPageView> {
+class LaundryPageViewState extends State<LaundryPageView> {
+  MediaQueryData queryData;
   static onTap(index) {
     print("$index selected.");
   }
@@ -45,6 +46,8 @@ class IntroPageViewState extends State<IntroPageView> {
 
   @override
   Widget build(BuildContext context) {
+    queryData = MediaQuery.of(context);
+    final TextTheme textTheme = Theme.of(context).textTheme;
     var _itemList = <Item>[
       Item(name: 'Wasing and Ironing', imageUrl: 'assets/wm/wash_machine.png'),
       Item(name: 'Ironing', imageUrl: 'assets/wm/iconfinder_Iron.png'),
@@ -55,95 +58,134 @@ class IntroPageViewState extends State<IntroPageView> {
     ];
 
     return Scaffold(
-        body: new ListView(
-      children: <Widget>[
-        _getPagerView(),
-        _getTextView("Services"),
-        Container(
-          height: 475.0,
-          child: new GridView.count(
-              crossAxisCount: 2,
-              childAspectRatio: 1.9,
-              padding: const EdgeInsets.all(9.0),
-              mainAxisSpacing: 20.0,
-              crossAxisSpacing: 50.0,
-              children: _itemList.map((Item _item) {
-                return Container(
-                  decoration: new BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                    border: new Border.all(
-                      color: Colors.grey[350],
-                      width: 3.0,
-                      style: BorderStyle.solid,
-                    ),
-                  ),
-                  child: Container(
-//                    padding: new EdgeInsets.all(8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      mainAxisSize: MainAxisSize.max,
-                      children: <Widget>[
-                        Flexible(
-                            flex: 2,
-                            child: Image.asset(
-                              _item.imageUrl,
-                              height: 70.0,
-                              width: 70.0,
-                              fit: BoxFit.fill,
-                              color: Color(getColorHexFromStr('#FB5B87')),
-                            )),
-                        Flexible(
-                            flex: 1,
-                            child: Container(
-                              margin: new EdgeInsets.fromLTRB(12.0, 0, 12.0, 0),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Text(
-                                    _item.name,
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      color: Colors.grey[700],
-                                      fontStyle: FontStyle.normal,
-                                      letterSpacing: 2.0,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text("2 Days",
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        color: Colors.grey,
-                                        fontStyle: FontStyle.normal,
-                                        letterSpacing: 2.0,
-                                        fontWeight: FontWeight.bold,
-                                      ))
-                                ],
-                              ),
-                            ))
-                      ],
-                    ),
-                  ),
-                );
-              }).toList()),
-        )
-      ],
+        body: SingleChildScrollView(
+      child: new Column(
+        children: <Widget>[
+          _getPagerView(),
+          _getTextView("Services"),
+          _getGridViewMenu(_itemList, queryData, textTheme),
+          _getTextView("Today's Deal"),
+//          _getDeals(context),
+        ],
+      ),
     ));
   }
+}
 
-  Widget _getTextView(text) => Container(
-        margin: EdgeInsets.fromLTRB(20.0, 10.0, 0.0, 0.0),
-        child: Text(
-          text,
-          maxLines: 1,
-          style: TextStyle(
-            fontSize: 20,
-            color: Colors.black,
-            fontStyle: FontStyle.italic,
-            letterSpacing: 2.0,
-            fontWeight: FontWeight.normal,
-          ),
-        ),
-      );
+_getTextView(text) {
+  return Container(
+    width: double.infinity,
+    margin: EdgeInsets.fromLTRB(20.0, 10.0, 0.0, 0.0),
+    child: Text(
+      text,
+      maxLines: 1,
+      style: TextStyle(
+        fontSize: 20,
+        color: Colors.black,
+        fontStyle: FontStyle.italic,
+        letterSpacing: 2.0,
+        fontWeight: FontWeight.normal,
+      ),
+    ),
+  );
+}
+
+_getGridViewMenu(
+    List<Item> _itemList, MediaQueryData queryData, TextTheme textTheme) {
+  double width = queryData.size.width;
+  double height = queryData.size.height;
+
+  return Container(
+    height: 800.0,
+    child: new GridView.count(
+        scrollDirection: Axis.vertical,
+        crossAxisCount: 2,
+        childAspectRatio: 1.3,
+        mainAxisSpacing: 20.0,
+        crossAxisSpacing: 20.0,
+        children: _itemList.map((Item _item) {
+          return Container(
+            decoration: new BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(10.0)),
+              border: new Border.all(
+                color: Colors.grey[350],
+                width: 3.0,
+                style: BorderStyle.solid,
+              ),
+            ),
+            margin: const EdgeInsets.all(15.0),
+            child: Container(
+//                    padding: new EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisSize: MainAxisSize.max,
+                children: <Widget>[
+                  Flexible(
+                      flex: 2,
+                      child: Container(
+                        margin: new EdgeInsets.fromLTRB(12.0, 0, 12.0, 0),
+                        child: Image.asset(
+                          _item.imageUrl,
+                          height: width / 8,
+                          width: width / 8,
+                          fit: BoxFit.fill,
+                          color: Color(getColorHexFromStr('#FB5B87')),
+                        ),
+                      )),
+                  Flexible(
+                      flex: 1,
+                      child: Container(
+                        margin: new EdgeInsets.fromLTRB(12.0, 0, 12.0, 0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              _item.name,
+                              style: textTheme.subtitle,
+                            ),
+                            Text("2 Days", style: textTheme.body1)
+                          ],
+                        ),
+                      ))
+                ],
+              ),
+            ),
+          );
+        }).toList()),
+  );
+}
+
+_getDeals(BuildContext context) {
+  double width = MediaQuery.of(context).size.width;
+
+  double _width = width * 0.65;
+
+  return ListView(
+    // This next line does the trick.
+    scrollDirection: Axis.horizontal,
+    children: <Widget>[
+      Container(
+        width: 160.0,
+        color: Colors.red,
+      ),
+      Container(
+        width: 160.0,
+        color: Colors.blue,
+      ),
+      Container(
+        width: 160.0,
+        color: Colors.green,
+      ),
+      Container(
+        width: 160.0,
+        color: Colors.yellow,
+      ),
+      Container(
+        width: 160.0,
+        color: Colors.orange,
+      ),
+    ],
+  );
 }

@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import '../main.dart';
+
 import '../pages/MyHomePage.dart';
 
 class MyLoginPage extends StatelessWidget {
+  static const String pageRouteName = "/MyLoginPage";
 
-    static const String pageRouteName = "/MyLoginPage";
-
-    @override
-    Widget build(BuildContext context) {
-      return new LoginPage();
-    }
+  @override
+  Widget build(BuildContext context) {
+    return new LoginPage();
+  }
 }
 
 class LoginPage extends StatefulWidget {
@@ -37,7 +36,6 @@ class LoginPageState extends State<LoginPage>
 
   @override
   Widget build(BuildContext context) {
-    
     return new Scaffold(
       backgroundColor: Colors.white,
       body: new Stack(fit: StackFit.expand, children: <Widget>[
@@ -92,7 +90,9 @@ class LoginPageState extends State<LoginPage>
                         textColor: Colors.white,
                         child: new Icon(Icons.local_parking),
                         onPressed: () {
-                          Navigator.of(context)..pop()..pushNamed(MyHomePage.pageRouteName);
+                          Navigator.of(context)
+                            ..pop()
+                            ..pushNamed(MyHomePage.pageRouteName);
                         },
                       )
                     ],

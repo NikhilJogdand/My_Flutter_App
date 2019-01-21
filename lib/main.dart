@@ -1,8 +1,10 @@
 import 'dart:async';
 
+import 'package:basicrouting/pages/welcome_screen/WelcomeScreen.dart';
 import 'package:basicrouting/ui/ListCardView.dart';
-import 'package:flutter/material.dart';
 import 'package:flarecode/flare_actor.dart';
+import 'package:flutter/material.dart';
+
 import 'pages/LoginPage.dart';
 import 'pages/MyHomePage.dart';
 import 'pages/MySecondPage.dart'; // For splash screen timer
@@ -10,7 +12,6 @@ import 'pages/MySecondPage.dart'; // For splash screen timer
 void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
-
   static var themeColor = getColorHexFromStr('#FB5B87');
 
   @override
@@ -22,8 +23,10 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.deepOrange,
             primaryColor: Theme.of(context).platform == TargetPlatform.android
                 ? Color(themeColor)
-                : Colors.yellow),
+                : Colors.deepOrange),
         routes: <String, WidgetBuilder>{
+          WelcomeScreen.pageRouteName: (BuildContext context) =>
+              new WelcomeScreen(),
           MyHomePage.pageRouteName: (BuildContext context) => new MyHomePage(),
           MyLoginPage.pageRouteName: (BuildContext context) =>
               new MyLoginPage(),
@@ -39,27 +42,19 @@ class SplashScren extends StatefulWidget {
 }
 
 class _SplashScrenState extends State<SplashScren> {
-
   String _animation = "Build";
 
   startAnimation() {
     Timer(
         Duration(seconds: 0),
-            () =>
-            setState(() {
+        () => setState(() {
               _animation = "rotate";
-            })
-    );
+            }));
 
     Timer(
         Duration(seconds: 5),
-            () =>
-//            Navigator.of(context)
-//          ..pop()
-//          ..push(new MaterialPageRoute(
-//              builder: (BuildContext context) => new MyHomePage()))
-    Navigator.of(context).pushReplacementNamed(MyHomePage.pageRouteName)
-    );
+        () => Navigator.of(context).pushReplacementNamed(
+            WelcomeScreen.pageRouteName)); // MyHomePage.pageRouteName
   }
 
   @override
@@ -71,12 +66,9 @@ class _SplashScrenState extends State<SplashScren> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      body: FlareActor(
-        "assets/flare_animation/mountain.flr",
-        animation: "rotate"
-      ),
+      body: FlareActor("assets/flare_animation/mountain.flr",
+          animation: "rotate"),
     );
   }
 }

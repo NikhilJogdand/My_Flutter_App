@@ -1,12 +1,11 @@
 import 'dart:async';
+
 import 'package:basicrouting/pages/home_tabs/Dashboard.dart';
 import 'package:basicrouting/pages/home_tabs/GunsTabView.dart';
-import 'package:basicrouting/pages/home_tabs/MissilesTabView.dart';
 import 'package:basicrouting/pages/home_tabs/TanksTabView.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../pages/MySecondPage.dart';
 import '../ui/drawer.dart';
 // import 'package:basicrouting/ui/drawer.dart';
 
@@ -76,47 +75,59 @@ class _MyHomePageState extends State<MyHomePage>
       onWillPop: _onWillPop,
       child: new Scaffold(
         appBar: new AppBar(
-            title: new Text(_tittle,style: TextStyle(fontSize: 25,letterSpacing: 3,fontStyle: FontStyle.italic),), centerTitle: true, elevation: 7.0),
+            title: new Text(
+              _tittle,
+              style: TextStyle(
+                  fontSize: 25, letterSpacing: 3, fontStyle: FontStyle.italic),
+            ),
+            centerTitle: true,
+            elevation: 7.0),
         drawer: new MyDrawer(), // Drawer Class instance is created.
-        body: getSelectedView(context,_selectedIndex),
+        body: getSelectedView(context, _selectedIndex),
         bottomNavigationBar: BottomNavigationBar(
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-                icon: new Image.asset("assets/riffle.png"), title: Text('Guns')),
+                icon: new Image.asset("assets/riffle.png"),
+                title: Text('Home')),
             BottomNavigationBarItem(
-                icon:  new Image.asset("assets/missile.png"), title: Text('Missiles')),
+                icon: new Image.asset("assets/missile.png"),
+                title: Text('Order')),
             BottomNavigationBarItem(
-                icon:  new Image.asset("assets/tank.png"), title: Text('Tanks')),
+                icon: new Image.asset("assets/tank.png"),
+                title: Text('Profile')),
           ],
           currentIndex: _selectedIndex,
           fixedColor: Colors.red,
           type: BottomNavigationBarType.fixed,
           onTap: _onItemTapped,
         ),
-
       ),
     );
   }
 }
 
 getSelectedView(BuildContext context, int selectedIndex) {
-  switch(selectedIndex) {
-    case 0: {
-     return new GunsTabView();
-    }
-    break;
-    case 1: {
-      return IntroPageView();// new MissilesTabView();
-    }
-    break;
-    case 2: {
-      return new TanksTabView();
-    }
-    break;
+  switch (selectedIndex) {
+    case 0:
+      {
+        return new GunsTabView();
+      }
+      break;
+    case 1:
+      {
+        return LaundryPageView(); // new MissilesTabView();
+      }
+      break;
+    case 2:
+      {
+        return new TanksTabView();
+      }
+      break;
 
-    default: {
-      return new GunsTabView();
-    }
-    break;
+    default:
+      {
+        return new GunsTabView();
+      }
+      break;
   }
 }
