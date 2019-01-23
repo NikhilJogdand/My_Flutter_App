@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:basicrouting/pages/welcome_screen/WelcomeScreen.dart';
 import 'package:basicrouting/ui/ListCardView.dart';
+import 'package:basicrouting/utilities/Utils.dart';
 import 'package:flarecode/flare_actor.dart';
 import 'package:flutter/material.dart';
 
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: new SplashScren(),
+        color: Color(Utils.getColorHexFromStr("#FB5B87")),
         theme: new ThemeData(
             primarySwatch: Colors.deepOrange,
             primaryColor: Theme.of(context).platform == TargetPlatform.android
@@ -54,7 +56,7 @@ class _SplashScrenState extends State<SplashScren> {
     Timer(
         Duration(seconds: 5),
         () => Navigator.of(context).pushReplacementNamed(
-            WelcomeScreen.pageRouteName)); // MyHomePage.pageRouteName
+            WelcomeScreen.pageRouteName)); // WelcomeScreen.pageRouteName
   }
 
   @override

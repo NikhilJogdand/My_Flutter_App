@@ -13,6 +13,7 @@ class LaundryPageView extends StatefulWidget {
 
 class LaundryPageViewState extends State<LaundryPageView> {
   MediaQueryData queryData;
+
   static onTap(index) {
     print("$index selected.");
   }
@@ -96,64 +97,67 @@ _getGridViewMenu(
   double height = queryData.size.height;
 
   return Container(
-    height: 800.0,
-    child: new GridView.count(
-        scrollDirection: Axis.vertical,
-        crossAxisCount: 2,
-        childAspectRatio: 1.3,
-        mainAxisSpacing: 20.0,
-        crossAxisSpacing: 20.0,
-        children: _itemList.map((Item _item) {
-          return Container(
-            decoration: new BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(10.0)),
-              border: new Border.all(
-                color: Colors.grey[350],
-                width: 3.0,
-                style: BorderStyle.solid,
+    height: 480.0,
+    child: Container(
+      margin: const EdgeInsets.all(15.0),
+      child: new GridView.count(
+          scrollDirection: Axis.vertical,
+          crossAxisCount: 2,
+          physics: const NeverScrollableScrollPhysics(),
+          childAspectRatio: 1.3,
+          mainAxisSpacing: 10.0,
+          crossAxisSpacing: 10.0,
+          children: _itemList.map((Item _item) {
+            return Container(
+              decoration: new BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                border: new Border.all(
+                  color: Colors.grey[350],
+                  width: 3.0,
+                  style: BorderStyle.solid,
+                ),
               ),
-            ),
-            margin: const EdgeInsets.all(15.0),
-            child: Container(
+              child: Container(
 //                    padding: new EdgeInsets.all(8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                mainAxisSize: MainAxisSize.max,
-                children: <Widget>[
-                  Flexible(
-                      flex: 2,
-                      child: Container(
-                        margin: new EdgeInsets.fromLTRB(12.0, 0, 12.0, 0),
-                        child: Image.asset(
-                          _item.imageUrl,
-                          height: width / 8,
-                          width: width / 8,
-                          fit: BoxFit.fill,
-                          color: Color(getColorHexFromStr('#FB5B87')),
-                        ),
-                      )),
-                  Flexible(
-                      flex: 1,
-                      child: Container(
-                        margin: new EdgeInsets.fromLTRB(12.0, 0, 12.0, 0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              _item.name,
-                              style: textTheme.subtitle,
-                            ),
-                            Text("2 Days", style: textTheme.body1)
-                          ],
-                        ),
-                      ))
-                ],
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisSize: MainAxisSize.max,
+                  children: <Widget>[
+                    Flexible(
+                        flex: 2,
+                        child: Container(
+                          margin: new EdgeInsets.fromLTRB(12.0, 0, 12.0, 0),
+                          child: Image.asset(
+                            _item.imageUrl,
+                            height: width / 8,
+                            width: width / 8,
+                            fit: BoxFit.fill,
+                            color: Color(getColorHexFromStr('#FB5B87')),
+                          ),
+                        )),
+                    Flexible(
+                        flex: 1,
+                        child: Container(
+                          margin: new EdgeInsets.fromLTRB(12.0, 0, 12.0, 0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                _item.name,
+                                style: textTheme.subtitle,
+                              ),
+                              Text("2 Days", style: textTheme.body1)
+                            ],
+                          ),
+                        ))
+                  ],
+                ),
               ),
-            ),
-          );
-        }).toList()),
+            );
+          }).toList()),
+    ),
   );
 }
 
