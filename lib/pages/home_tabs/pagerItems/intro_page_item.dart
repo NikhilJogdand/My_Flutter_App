@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
-import 'package:basicrouting/pages/home_tabs/pagerItems/data.dart';
+import 'package:basicrouting/pages/home_tabs/pagerItems/HomeScreenDataModel.dart';
 import 'package:basicrouting/pages/home_tabs/pagerItems/page_transformer.dart';
 
 class IntroPageItem extends StatelessWidget {

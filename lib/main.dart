@@ -1,8 +1,5 @@
 import 'dart:async';
 
-import 'package:basicrouting/pages/welcome_screen/WelcomeScreen.dart';
-import 'package:basicrouting/ui/ListCardView.dart';
-import 'package:basicrouting/utilities/Utils.dart';
 import 'package:flarecode/flare_actor.dart';
 import 'package:flutter/material.dart';
 
@@ -20,15 +17,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: new SplashScren(),
-        color: Color(Utils.getColorHexFromStr("#FB5B87")),
+        color: Color(getColorHexFromStr("#FB5B87")),
         theme: new ThemeData(
             primarySwatch: Colors.deepOrange,
             primaryColor: Theme.of(context).platform == TargetPlatform.android
                 ? Color(themeColor)
-                : Colors.deepOrange),
+                : Color(themeColor)),
         routes: <String, WidgetBuilder>{
-          WelcomeScreen.pageRouteName: (BuildContext context) =>
-              new WelcomeScreen(),
           MyHomePage.pageRouteName: (BuildContext context) => new MyHomePage(),
           MyLoginPage.pageRouteName: (BuildContext context) =>
               new MyLoginPage(),
@@ -56,7 +51,7 @@ class _SplashScrenState extends State<SplashScren> {
     Timer(
         Duration(seconds: 5),
         () => Navigator.of(context).pushReplacementNamed(
-            WelcomeScreen.pageRouteName)); // WelcomeScreen.pageRouteName
+            MyHomePage.pageRouteName)); // WelcomeScreen.pageRouteName
   }
 
   @override
@@ -73,4 +68,26 @@ class _SplashScrenState extends State<SplashScren> {
           animation: "rotate"),
     );
   }
+}
+
+int getColorHexFromStr(String colorStr) {
+  colorStr = "FF" + colorStr;
+  colorStr = colorStr.replaceAll("#", "");
+  int val = 0;
+  int len = colorStr.length;
+  for (int i = 0; i < len; i++) {
+    int hexDigit = colorStr.codeUnitAt(i);
+    if (hexDigit >= 48 && hexDigit <= 57) {
+      val += (hexDigit - 48) * (1 << (4 * (len - 1 - i)));
+    } else if (hexDigit >= 65 && hexDigit <= 70) {
+      // A..F
+      val += (hexDigit - 55) * (1 << (4 * (len - 1 - i)));
+    } else if (hexDigit >= 97 && hexDigit <= 102) {
+      // a..f
+      val += (hexDigit - 87) * (1 << (4 * (len - 1 - i)));
+    } else {
+      throw new FormatException("An error occurred when converting a color");
+    }
+  }
+  return val;
 }

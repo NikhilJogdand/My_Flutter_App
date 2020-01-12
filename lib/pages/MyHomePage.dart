@@ -1,13 +1,12 @@
 import 'dart:async';
 
-import 'package:basicrouting/pages/home_tabs/Dashboard.dart';
+import 'package:basicrouting/pages/home_tabs/LaundryPageView.dart';
 import 'package:basicrouting/pages/home_tabs/GunsTabView.dart';
 import 'package:basicrouting/pages/home_tabs/TanksTabView.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../ui/drawer.dart';
-// import 'package:basicrouting/ui/drawer.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -71,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage>
 
   @override
   Widget build(BuildContext context) {
-    return new WillPopScope(
+    return WillPopScope(
       onWillPop: _onWillPop,
       child: new Scaffold(
         appBar: new AppBar(

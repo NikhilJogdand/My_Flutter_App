@@ -48,9 +48,14 @@ flutter:
    - assets/wm/iconfinder_Poison.png
    - assets/wm/premium_customer.png
    - assets/wm/iconfinder_house.png
+#   Grid view row icons
+   - assets/offers/offer_item_1.png
+   - assets/offers/offer_item_2.png
+   - assets/offers/offer_item_3.png
+   - assets/offers/offer_item_4.png
 #   WelcomScreen Images
-   - assets/wecome_images/laundry.png
-   - assets/wecome_images/play-button.png
+#   - assets/wecome_images/laundry.png
+#   - assets/wecome_images/play-button.png
 
   fonts:
       - family: Quicksand
