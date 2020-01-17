@@ -1,9 +1,8 @@
 Basic UI and Navigation Demo
 
-A new Flutter project.
 
 # Screenshot1
-<img height="580px" width="350px" src="https://github.com/NikhilJogdand/My_Flutter_App/blob/master/Screenshot.png">
+<img height="480px" src="https://github.com/NikhilJogdand/My_Flutter_App/blob/master/Screenshot.png">
 
 
 
