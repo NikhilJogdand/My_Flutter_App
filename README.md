@@ -6,3 +6,5 @@ A new Flutter project.
 
 For help getting started with Flutter, view our online
 [documentation](https://flutter.io/).
+
+Screenshots of UI: ![ScreenShot](https://{https://github.com/NikhilJogdand/My_Flutter_App/blob/master/Screenshot.png?raw=true})
