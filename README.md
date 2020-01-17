@@ -6,7 +6,7 @@ Basic UI and Navigation Demo
 
 
 
-#Screenshot2
+# Screenshot2
 <img height="480px" src="https://github.com/NikhilJogdand/My_Flutter_App/blob/master/Screenshot2.png">
 
 
